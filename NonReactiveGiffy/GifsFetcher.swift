@@ -16,6 +16,7 @@ class GifsFetcher{
         static let trendedGifsURL: URL! = URL(string: "http://api.giphy.com/v1/gifs/trending?")
         static let searchGifsURL: URL! = URL(string: "http://api.giphy.com/v1/gifs/search?")
     }
+    
     var gifs = [Gif]()
     
     func getTrendedGifs(){
@@ -23,19 +24,32 @@ class GifsFetcher{
             "api_key": "dc6zaTOxFJmzC"
         ]
         
-        Alamofire.request(Constants.trendedGifsURL, parameters:params).responseJSON { response in
+        Alamofire.request(Constants.trendedGifsURL, parameters:params).responseJSON {[weak weakSelf = self] response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
+                weakSelf?.gifs = (weakSelf?.gifsFromJson(json: json))!
                 
-                for (key,subJson):(String, JSON) in json["data"] {
-                    let rating = subJson["rating"]
-                    let 
-                }
-//                print(json)
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    private func gifsFromJson(json: JSON) -> [Gif]{
+        let imageSize = "fixed_height_small_still"
+        var gifs = [Gif]()
+        for (_,subJson):(String, JSON) in json["data"] {
+            let rating = subJson["rating"].string
+            if let url = subJson["images"][imageSize]["url"].url,
+            let width = subJson["images"][imageSize]["width"].string,
+            let height = subJson["images"][imageSize]["height"].string{
+                if let floatWidth = Float(width), let floatHeight = Float(height){
+                    let gif = Gif(url: url, width: floatWidth, height: floatHeight, rating: rating)
+                    gifs.append(gif)
+                }
+            }
+        }
+        return gifs
     }
 }
