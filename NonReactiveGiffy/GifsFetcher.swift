@@ -35,7 +35,8 @@ class GifsFetcher{
     }
     
     private func gifsFromJson(json: JSON) -> [Gif]{
-        let imageSize = "fixed_height_small_still"
+        let imageSize = "fixed_width"
+        
         var gifs = [Gif]()
         for (_,subJson):(String, JSON) in json["data"] {
             let rating = subJson["rating"].string

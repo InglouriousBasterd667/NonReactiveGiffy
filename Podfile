@@ -5,8 +5,8 @@ target 'NonReactiveGiffy' do
 	use_frameworks!
 	
 	pod 'SwiftyJSON'
-	pod 'SwiftGifOrigin', '~> 1.6.1'
 	pod 'Alamofire', '~> 4.3'
-	
+	pod 'SwiftGifOrigin', '~> 1.6.1'	
 
 end
+

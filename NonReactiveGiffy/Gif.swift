@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class Gif{
     var url: URL
     var width: Float

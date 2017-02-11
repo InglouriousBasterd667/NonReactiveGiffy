@@ -21,9 +21,10 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
     }
     
     let gifsFetcher = GifsFetcher()
+    
     var gifs = [Gif](){
         didSet{
-            collectionView?.reloadData()
+            collectionView!.reloadData()
             print("i'm set")
         }
     }
@@ -34,18 +35,27 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
             self.gifs = gifs
         }
         print("i'm loaded")
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         prepareUI()
+        let collectionViewLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
+        collectionViewLayout?.sectionInset = UIEdgeInsetsMake(searchBar.frame.size.height, 0, 0, 0)
+        collectionViewLayout?.invalidateLayout()
     }
     
     
     func prepareUI(){
         self.addSearchBar()
 //        self.addRefreshControl()
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        let height = self.gifs[indexPath.row].height
+        return CGSize(width: UIScreen.main.bounds.size.width / 2 - 10,
+                      height: CGFloat(height))
     }
     
     func addSearchBar(){
@@ -56,11 +66,11 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
                                                        y: self.searchBarBoundsY!,
                                                        width: UIScreen.main.bounds.size.width,
                                                        height: 44))
-            
-            self.searchBar.searchBarStyle = .minimal
+        
+            self.searchBar.searchBarStyle = .prominent
             self.searchBar.tintColor = .white
-            self.searchBar.barTintColor = .white
-            self.searchBar.placeholder = "search here";
+            self.searchBar.barTintColor = .orange
+            self.searchBar.placeholder = "Find GIFs";
             self.searchBar.delegate = self
             
         }
