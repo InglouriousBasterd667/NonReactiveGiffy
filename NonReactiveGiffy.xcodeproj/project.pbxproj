@@ -14,6 +14,7 @@
 		227B8C9A1E4CF46200730264 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227B8C991E4CF46200730264 /* Assets.xcassets */; };
 		227B8C9D1E4CF46200730264 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227B8C9B1E4CF46200730264 /* LaunchScreen.storyboard */; };
 		22E528581E4D90F7004F0183 /* GifsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E528571E4D90F7004F0183 /* GifsFetcher.swift */; };
+		22E5285A1E4EF4B7004F0183 /* GifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E528591E4EF4B7004F0183 /* GifCell.swift */; };
 		BCACC8B8CA8901F0933C55FD /* Pods_NonReactiveGiffy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FCECA60B98BFBF6C7914D4 /* Pods_NonReactiveGiffy.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		227B8C9C1E4CF46200730264 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		227B8C9E1E4CF46200730264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22E528571E4D90F7004F0183 /* GifsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifsFetcher.swift; sourceTree = "<group>"; };
+		22E528591E4EF4B7004F0183 /* GifCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifCell.swift; sourceTree = "<group>"; };
 		89FCECA60B98BFBF6C7914D4 /* Pods_NonReactiveGiffy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NonReactiveGiffy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDC0267BF820C5F37FDAAAB5 /* Pods-NonReactiveGiffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NonReactiveGiffy.release.xcconfig"; path = "Pods/Target Support Files/Pods-NonReactiveGiffy/Pods-NonReactiveGiffy.release.xcconfig"; sourceTree = "<group>"; };
 		F965BE4893F08D7F3E3E88F4 /* Pods-NonReactiveGiffy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NonReactiveGiffy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NonReactiveGiffy/Pods-NonReactiveGiffy.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				227B8C921E4CF46200730264 /* AppDelegate.swift */,
 				227B8C941E4CF46200730264 /* TrendedGifsCollectionViewController.swift */,
 				22E528571E4D90F7004F0183 /* GifsFetcher.swift */,
+				22E528591E4EF4B7004F0183 /* GifCell.swift */,
 				226E28C41E4D00F4007A208D /* Gif.swift */,
 				227B8C961E4CF46200730264 /* Main.storyboard */,
 				227B8C991E4CF46200730264 /* Assets.xcassets */,
@@ -220,6 +223,7 @@
 			files = (
 				227B8C951E4CF46200730264 /* TrendedGifsCollectionViewController.swift in Sources */,
 				227B8C931E4CF46200730264 /* AppDelegate.swift in Sources */,
+				22E5285A1E4EF4B7004F0183 /* GifCell.swift in Sources */,
 				22E528581E4D90F7004F0183 /* GifsFetcher.swift in Sources */,
 				226E28C51E4D00F4007A208D /* Gif.swift in Sources */,
 			);

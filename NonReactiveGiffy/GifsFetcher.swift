@@ -17,9 +17,8 @@ class GifsFetcher{
         static let searchGifsURL: URL! = URL(string: "http://api.giphy.com/v1/gifs/search?")
     }
     
-    var gifs = [Gif]()
     
-    func getTrendedGifs(){
+    func getTrendedGifs(setGifs: @escaping ([Gif])-> Void){
         let params: Parameters = [
             "api_key": "dc6zaTOxFJmzC"
         ]
@@ -28,8 +27,7 @@ class GifsFetcher{
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                weakSelf?.gifs = (weakSelf?.gifsFromJson(json: json))!
-                
+                setGifs(weakSelf!.gifsFromJson(json: json))
             case .failure(let error):
                 print(error)
             }

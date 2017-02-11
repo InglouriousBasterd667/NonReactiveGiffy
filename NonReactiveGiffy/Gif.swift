@@ -20,6 +20,5 @@ class Gif{
         self.width = width
         self.height = height
         self.rating = rating
-        
     }
 }
