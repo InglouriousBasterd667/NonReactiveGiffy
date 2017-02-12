@@ -16,6 +16,7 @@ class GifCollectionViewCell: UICollectionViewCell {
     var gif: Gif?{
         didSet{
             updateUI()
+            
         }
     }
     

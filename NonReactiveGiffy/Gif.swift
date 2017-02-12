@@ -13,11 +13,13 @@ class Gif{
     var width: Float
     var height: Float
     var rating: String?
+    var trended: Date?
     
-    init(url: URL, width: Float, height: Float, rating: String?) {
+    init(url: URL, width: Float, height: Float, rating: String?, trended: Date?) {
         self.url = url
         self.width = width
         self.height = height
         self.rating = rating
+        self.trended = trended
     }
 }
