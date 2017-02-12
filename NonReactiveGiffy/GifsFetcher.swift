@@ -43,19 +43,19 @@ class GifsFetcher{
         let imageSize = "fixed_width"
         var gifs = [Gif]()
         for (_,subJson):(String, JSON) in json["data"] {
-            let rating = subJson["rating"].string
+            
             if let url = subJson["images"][imageSize]["url"].url,
             let width = subJson["images"][imageSize]["width"].string,
             let height = subJson["images"][imageSize]["height"].string,
-            let trended = subJson["trending_datetime"].string{
+            let trended = subJson["trending_datetime"].string,
+            let rating = subJson["rating"].string{
                 if let floatWidth = Float(width), let floatHeight = Float(height){
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy-MM-dd HH:mm:ss",
                                                                   options: 0,
                                                                   locale: nil)
-                    let gif = Gif(url: url, width: floatWidth, height: floatHeight, rating: rating,
+                    let gif = Gif(url: url, width: floatWidth, height: floatHeight,     rating: rating,
                                   trended: dateFormatter.date(from: trended))
-                    print(dateFormatter.date(from: trended))
                     gifs.append(gif)
                 }
             }

@@ -15,25 +15,31 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
     let height: CGFloat = 44
     var searchBarActive: Bool = false
     var boundsY: CGFloat?
-    var searchBar: UISearchBar!
-    var switchControl: UISwitch!
+    var searchBar: UISearchBar?
+    var switchControl: UISwitch?
     
     struct Constants{
         static let CellReuseID = "GifCell"
     }
-    
+
     let gifsFetcher = GifsFetcher()
-    
+    var familyGifs = [Gif]()
+    var query: String = ""
     var gifs = [Gif](){
         didSet{
             collectionView!.reloadData()
         }
     }
-    var query: String = ""
+    
+    
+    
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        gifsFetcher.getGifs(with: query) { gifs in self.gifs = gifs }
+        gifsFetcher.getGifs(with: query) { gifs in
+            self.gifs = gifs
+            self.familyGifs = gifs.filter { gif in return gif.isFamilyGif}
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,16 +70,15 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
                                                        width: UIScreen.main.bounds.size.width,
                                                        height: 44))
         
-            self.searchBar.searchBarStyle = .prominent
-            self.searchBar.tintColor = .white
-            self.searchBar.barTintColor = .orange
-            self.searchBar.placeholder = "Find GIFs";
-            self.searchBar.delegate = self
+            self.searchBar?.searchBarStyle = .prominent
+            self.searchBar?.tintColor = .white
+            self.searchBar?.barTintColor = .orange
+            self.searchBar?.placeholder = "Find GIFs";
+            self.searchBar?.delegate = self
             
         }
-        
-        if !self.searchBar.isDescendant(of: self.view){
-            self.view.addSubview(self.searchBar)
+        if !self.searchBar!.isDescendant(of: self.view){
+            self.view.addSubview(self.searchBar!)
         }
     }
     
@@ -84,11 +89,11 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
                                                         y: boundsY! + 5,
                                                         width: switchWidth,
                                                         height: height))
-            switchControl.addTarget(self, action: #selector(self.switchValueDidChanged(sender:)), for: .valueChanged);
-            self.switchControl.setOn(true, animated: true)
+            switchControl?.addTarget(self, action: #selector(self.switchValueDidChanged(sender:)), for: .valueChanged);
+            self.switchControl?.setOn(true, animated: true)
         }
         
-        if !self.switchControl.isDescendant(of: self.view){
+        if !self.switchControl!.isDescendant(of: self.view){
             self.view.addSubview(self.switchControl!)
         }
     }
@@ -134,15 +139,21 @@ extension TrendedGifsCollectionViewController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return gifs.count
+        var count = gifs.count
+        if let swControl = switchControl, swControl.isOn{
+            count = familyGifs.count
+        }
+        return count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellReuseID, for: indexPath)
         if let gifCell = cell as? GifCollectionViewCell{
-            let gif = gifs[indexPath.row]
-            
-            gifCell.gif = gifs[indexPath.row]
+            if let swControl = switchControl, swControl.isOn{
+                gifCell.gif = familyGifs[indexPath.row]
+            } else {
+                gifCell.gif = gifs[indexPath.row]
+            }
         }
         return cell
     }

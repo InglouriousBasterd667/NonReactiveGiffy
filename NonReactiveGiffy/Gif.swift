@@ -12,14 +12,21 @@ class Gif{
     var url: URL
     var width: Float
     var height: Float
-    var rating: String?
+    var rating: String
     var trended: Date?
+    var isFamilyGif: Bool = false
     
-    init(url: URL, width: Float, height: Float, rating: String?, trended: Date?) {
+    let familyRanks: Set = ["y", "g", "pg"]
+    
+    init(url: URL, width: Float, height: Float, rating: String, trended: Date?) {
         self.url = url
         self.width = width
         self.height = height
         self.rating = rating
         self.trended = trended
+        if familyRanks.contains(rating){
+            isFamilyGif = true
+        }
     }
+    
 }
