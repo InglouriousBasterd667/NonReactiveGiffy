@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -56,19 +57,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gHT-1X-Tob">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="126"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Never trended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMl-XD-xVu">
+                                            <rect key="frame" x="0.0" y="129" width="150" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </view>
                                 <constraints>
                                     <constraint firstItem="gHT-1X-Tob" firstAttribute="top" secondItem="acx-WM-Db1" secondAttribute="top" id="00Z-EA-YJQ"/>
+                                    <constraint firstItem="RMl-XD-xVu" firstAttribute="leading" secondItem="acx-WM-Db1" secondAttribute="leading" id="11t-zN-ROT"/>
+                                    <constraint firstAttribute="bottom" secondItem="RMl-XD-xVu" secondAttribute="bottom" id="UYu-71-IVb"/>
                                     <constraint firstItem="gHT-1X-Tob" firstAttribute="leading" secondItem="acx-WM-Db1" secondAttribute="leading" id="Yfa-JY-TUD"/>
-                                    <constraint firstAttribute="bottom" secondItem="gHT-1X-Tob" secondAttribute="bottom" id="eMs-2T-C37"/>
+                                    <constraint firstItem="RMl-XD-xVu" firstAttribute="top" secondItem="gHT-1X-Tob" secondAttribute="bottom" constant="3" id="h1Z-ro-Kje"/>
+                                    <constraint firstAttribute="trailing" secondItem="RMl-XD-xVu" secondAttribute="trailing" id="iuW-8u-Enl"/>
                                     <constraint firstAttribute="trailing" secondItem="gHT-1X-Tob" secondAttribute="trailing" id="jkf-yj-R8m"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="gHT-1X-Tob" secondAttribute="bottom" constant="16" id="rtd-li-G5z"/>
                                 </constraints>
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="gifImageView" destination="gHT-1X-Tob" id="LG4-eT-eoB"/>
+                                    <outlet property="trended" destination="RMl-XD-xVu" id="dxf-ez-TFR"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

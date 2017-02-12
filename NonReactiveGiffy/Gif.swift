@@ -7,16 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
 class Gif{
-    var url: URL
-    var width: Float
-    var height: Float
-    var rating: String
-    var trended: Date?
-    var isFamilyGif: Bool = false
-    
+    let url: URL
+    let width: Float
+    let height: Float
+    let rating: String
+    let trended: Date?
     let familyRanks: Set = ["y", "g", "pg"]
+    
+    var isFamilyGif: Bool = false
+    var image: UIImage?
     
     init(url: URL, width: Float, height: Float, rating: String, trended: Date?) {
         self.url = url

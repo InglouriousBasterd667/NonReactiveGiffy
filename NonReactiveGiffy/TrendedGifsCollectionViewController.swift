@@ -31,16 +31,16 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
         }
     }
     
-    
-    
-    
     override func viewDidLoad(){
         super.viewDidLoad()
         gifsFetcher.getGifs(with: query) { gifs in
             self.gifs = gifs
             self.familyGifs = gifs.filter { gif in return gif.isFamilyGif}
         }
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.boundsY = (self.navigationController?.navigationBar.frame.size.height)! +
@@ -70,8 +70,8 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
                                                        width: UIScreen.main.bounds.size.width,
                                                        height: 44))
         
-            self.searchBar?.searchBarStyle = .prominent
-            self.searchBar?.tintColor = .white
+            self.searchBar?.searchBarStyle = .default
+            self.searchBar?.tintColor = .black
             self.searchBar?.barTintColor = .orange
             self.searchBar?.placeholder = "Find GIFs";
             self.searchBar?.delegate = self
@@ -110,7 +110,6 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
         if !label.isDescendant(of: self.view){
             self.view.addSubview(label)
         }
-        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -121,8 +120,15 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
         if let query = searchBar.text{
             vc.title = query.uppercased()
             vc.query = query
+            searchBar.text = ""
+            searchBar.resignFirstResponder()
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    
+    func dismissKeyboard(){
+        searchBar?.resignFirstResponder()
     }
     
     func switchValueDidChanged(sender: UISwitch){
@@ -154,7 +160,9 @@ extension TrendedGifsCollectionViewController{
             } else {
                 gifCell.gif = gifs[indexPath.row]
             }
+            
         }
+        
         return cell
     }
 
