@@ -9,26 +9,26 @@
 import Foundation
 import UIKit
 
-class Gif{
+class Gif {
     let url: URL
     let width: Float
     let height: Float
     let rating: String
     let trended: Date?
     let familyRanks: Set = ["y", "g", "pg"]
-    
+
     var isFamilyGif: Bool = false
     var image: UIImage?
-    
+
     init(url: URL, width: Float, height: Float, rating: String, trended: Date?) {
         self.url = url
         self.width = width
         self.height = height
         self.rating = rating
         self.trended = trended
-        if familyRanks.contains(rating){
+        if familyRanks.contains(rating) {
             isFamilyGif = true
         }
     }
-    
+
 }

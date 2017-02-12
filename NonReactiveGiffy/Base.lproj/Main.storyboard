@@ -15,7 +15,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7KA-lF-GLo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nrk-Hd-79b">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nrk-Hd-79b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,7 +38,7 @@
         <scene sceneID="a26-ev-4NZ">
             <objects>
                 <collectionViewController storyboardIdentifier="GifsCollecitonViewController" id="hhe-ZV-gQ7" customClass="TrendedGifsCollectionViewController" customModule="NonReactiveGiffy" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="YsZ-L5-slq">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="YsZ-L5-slq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -94,6 +94,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mje-RP-L0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1460" y="526.6866566716642"/>
+        </scene>
+        <!--TRENDING GIFS-->
+        <scene sceneID="9PD-e7-gnZ">
+            <objects>
+                <collectionViewController storyboardIdentifier="SearchedCollecitonViewController" id="RUF-WI-f6U" customClass="SearchedGifsCollecitonViewController" customModule="NonReactiveGiffy" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="XGj-vS-OgS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="fr6-D1-OPF">
+                            <size key="itemSize" width="170" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GifCell" id="l9V-qn-3ZB" customClass="GifCollectionViewCell" customModule="NonReactiveGiffy" customModuleProvider="target">
+                                <rect key="frame" x="5" y="5" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LWQ-kM-vnT">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="126"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Never trended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16G-g3-Bry">
+                                            <rect key="frame" x="0.0" y="129" width="150" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="16G-g3-Bry" secondAttribute="trailing" id="7DC-4R-LBy"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="LWQ-kM-vnT" secondAttribute="bottom" constant="16" id="8FQ-nw-uDd"/>
+                                    <constraint firstAttribute="trailing" secondItem="LWQ-kM-vnT" secondAttribute="trailing" id="ClP-1o-HXr"/>
+                                    <constraint firstItem="16G-g3-Bry" firstAttribute="leading" secondItem="l9V-qn-3ZB" secondAttribute="leading" id="Oac-pG-xpM"/>
+                                    <constraint firstAttribute="bottom" secondItem="16G-g3-Bry" secondAttribute="bottom" id="QW9-gz-0YW"/>
+                                    <constraint firstItem="LWQ-kM-vnT" firstAttribute="leading" secondItem="l9V-qn-3ZB" secondAttribute="leading" id="Tt8-hY-ceX"/>
+                                    <constraint firstItem="LWQ-kM-vnT" firstAttribute="top" secondItem="l9V-qn-3ZB" secondAttribute="top" id="jaP-Tq-dkp"/>
+                                    <constraint firstItem="16G-g3-Bry" firstAttribute="top" secondItem="LWQ-kM-vnT" secondAttribute="bottom" constant="3" id="wei-aS-oLB"/>
+                                </constraints>
+                                <size key="customSize" width="150" height="150"/>
+                                <connections>
+                                    <outlet property="gifImageView" destination="LWQ-kM-vnT" id="ifD-rd-NVM"/>
+                                    <outlet property="trended" destination="16G-g3-Bry" id="8cl-um-iX6"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="RUF-WI-f6U" id="snq-FX-53h"/>
+                            <outlet property="delegate" destination="RUF-WI-f6U" id="aDc-0L-yWB"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="TRENDING GIFS" id="9gQ-Jp-x5I"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bo9-UU-Frc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2417" y="527"/>
         </scene>
     </scenes>
 </document>

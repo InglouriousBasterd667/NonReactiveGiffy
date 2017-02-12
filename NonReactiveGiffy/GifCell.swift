@@ -12,37 +12,35 @@ import SwiftGifOrigin
 
 class GifCollectionViewCell: UICollectionViewCell {
     @IBOutlet var gifImageView: UIImageView!
-    
+
     @IBOutlet var trended: UILabel!
-    var gif: Gif?{
-        didSet{
+    var gif: Gif? {
+        didSet {
             if let date = gif?.trended {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 let dateNew = dateFormatter.string(from: date)
                 trended.text = dateNew
             }
-            if let image = gif?.image{
+            if let image = gif?.image {
                 gifImageView.image = image
-            }
-            else{
+            } else {
                 loadImage()
             }
         }
     }
-    
-    private func loadImage(){
+
+    private func loadImage() {
         self.gifImageView.backgroundColor = .orange
-        if let url = gif?.url{
-            DispatchQueue.global(qos: .userInitiated).async{
+        if let url = gif?.url {
+            DispatchQueue.global(qos: .userInitiated).async {
                 let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
                     if let gifData = data, url == self.gif?.url {
                         let gifImage = UIImage.gif(data: gifData)
                         self.gif?.image = gifImage
                         self.gifImageView.image = gifImage
-                    }
-                    else{
+                    } else {
                         self.gif?.image = nil
                         print("hi")
                     }
