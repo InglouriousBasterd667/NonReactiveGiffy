@@ -34,6 +34,9 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
         }
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
+        if let layout = collectionView?.collectionViewLayout as? GifLayout {
+            layout.delegate = self
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -109,10 +112,30 @@ extension TrendedGifsCollectionViewController {
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let height = self.gifs[indexPath.row].height
-        return CGSize(width: UIScreen.main.bounds.size.width / 2 - 3,
-                      height: CGFloat(height))
-    }
-
 }
+
+extension TrendedGifsCollectionViewController: GifLayoutDelegate{
+    
+    func collectionView(_ collectionView:UICollectionView,
+                        heightForGifAtIndexPath indexPath: IndexPath,
+                        withWidth width: CGFloat) -> CGFloat {
+        let height = gifs[indexPath.item].height
+        return CGFloat(height)
+    }
+    
+    // 2
+    func collectionView(_ collectionView: UICollectionView,
+                        heightForAnnotationAtIndexPath indexPath: IndexPath,
+                        withWidth width: CGFloat) -> CGFloat {
+        return CGFloat(gifs[indexPath.item].heightOfComment)
+    }
+}
+
+//extension TrendedGifsCollectionViewController: UICollectionViewDelegateFlowLayout{
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        let height = self.gifs[indexPath.row].height
+//        return CGSize(width: UIScreen.main.bounds.size.width / 2 - 3,
+//                      height: CGFloat(height))
+//    }
+//}

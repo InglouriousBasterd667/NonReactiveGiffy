@@ -16,7 +16,8 @@ class Gif {
     let rating: String
     let trended: Date?
     let familyRanks: Set = ["y", "g", "pg"]
-
+    var heightOfComment = 22
+    
     var isFamilyGif: Bool = false
     var image: UIImage?
 

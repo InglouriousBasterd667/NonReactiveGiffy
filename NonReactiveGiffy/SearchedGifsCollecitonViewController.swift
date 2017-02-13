@@ -12,7 +12,7 @@ class SearchedGifsCollecitonViewController: UICollectionViewController {
 
     let height: CGFloat = 44
     var boundsY: CGFloat?
-    var switchControl: UISwitch?
+    var switchControl: UISwitch!
 
     struct Constants {
         static let CellReuseID = "GifCell"
@@ -32,6 +32,9 @@ class SearchedGifsCollecitonViewController: UICollectionViewController {
         gifsFetcher.getGifs(with: query) { gifs in
             self.gifs = gifs
             self.familyGifs = gifs.filter { gif in return gif.isFamilyGif}
+        }
+        if let layout = collectionView?.collectionViewLayout as? GifLayout{
+            layout.delegate = self
         }
     }
 
@@ -85,6 +88,22 @@ class SearchedGifsCollecitonViewController: UICollectionViewController {
     }
 }
 
+extension SearchedGifsCollecitonViewController: GifLayoutDelegate{
+    
+    func collectionView(_ collectionView:UICollectionView,
+                        heightForGifAtIndexPath indexPath: IndexPath,
+                        withWidth width: CGFloat) -> CGFloat {
+        let height = switchControl.isOn ? familyGifs[indexPath.item].height : gifs[indexPath.item].height
+        return CGFloat(height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        heightForAnnotationAtIndexPath indexPath: IndexPath,
+                        withWidth width: CGFloat) -> CGFloat {
+        let commentHeight = switchControl.isOn ? familyGifs[indexPath.item].heightOfComment : gifs[indexPath.item].heightOfComment
+        return CGFloat(commentHeight)
+    }
+}
 extension SearchedGifsCollecitonViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -111,10 +130,6 @@ extension SearchedGifsCollecitonViewController {
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let height = self.gifs[indexPath.row].height
-        return CGSize(width: UIScreen.main.bounds.size.width / 2 - 3,
-                      height: CGFloat(height))
-    }
+
 
 }
