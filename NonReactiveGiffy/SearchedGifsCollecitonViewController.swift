@@ -48,8 +48,8 @@ class SearchedGifsCollecitonViewController: UICollectionViewController {
     func prepareUI() {
         self.addLabel()
         self.addSwitchControl()
-        let collectionViewLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
-        collectionViewLayout?.sectionInset = UIEdgeInsets(top: height, left: 0, bottom: 0, right: 0)
+        let collectionViewLayout = collectionView?.collectionViewLayout as? GifLayout
+        collectionViewLayout?.topInset = switchControl.frame.height
         collectionViewLayout?.invalidateLayout()
     }
 
@@ -60,11 +60,11 @@ class SearchedGifsCollecitonViewController: UICollectionViewController {
                                                         y: boundsY! + 5,
                                                         width: switchWidth,
                                                         height: height))
-            switchControl?.addTarget(self, action: #selector(self.switchValueDidChanged(sender:)), for: .valueChanged)
-            self.switchControl?.setOn(true, animated: true)
+            switchControl.addTarget(self, action: #selector(self.switchValueDidChanged(sender:)), for: .valueChanged)
+            self.switchControl.setOn(true, animated: true)
         }
 
-        if !self.switchControl!.isDescendant(of: self.view) {
+        if !self.switchControl.isDescendant(of: self.view) {
             self.view.addSubview(self.switchControl!)
         }
     }
@@ -73,7 +73,7 @@ class SearchedGifsCollecitonViewController: UICollectionViewController {
         let label = UILabel(frame: CGRect(x: 0,
                                           y: self.boundsY!,
                                           width: UIScreen.main.bounds.size.width,
-                                          height: 44))
+                                          height: height))
         label.text = "FAMILY MODE"
         label.textAlignment = .center
         label.textColor = .white
@@ -122,9 +122,9 @@ extension SearchedGifsCollecitonViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellReuseID, for: indexPath)
         if let gifCell = cell as? GifCollectionViewCell {
             if let swControl = switchControl, swControl.isOn {
-                gifCell.gif = familyGifs[indexPath.row]
+                gifCell.gif = familyGifs[indexPath.item]
             } else {
-                gifCell.gif = gifs[indexPath.row]
+                gifCell.gif = gifs[indexPath.item]
             }
         }
         return cell

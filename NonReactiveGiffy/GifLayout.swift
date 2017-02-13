@@ -23,6 +23,7 @@ class GifLayout: UICollectionViewLayout {
     
     var numberOfColumns = 2
     var padding: CGFloat = 6.0
+    var topInset: CGFloat = 0
     
     private var cache = [UICollectionViewLayoutAttributes]()
     
@@ -56,7 +57,7 @@ class GifLayout: UICollectionViewLayout {
             }
             
             var column = 0
-            var yOffset = [CGFloat](repeating: 0, count: numberOfColumns)
+            var yOffset = [CGFloat](repeating: topInset, count: numberOfColumns)
             
             for item in 0 ..< collectionView!.numberOfItems(inSection: 0){
                 

@@ -14,7 +14,7 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
 
     let height: CGFloat = 44
     var boundsY: CGFloat?
-    var searchBar: UISearchBar?
+    var searchBar: UISearchBar!
 
     struct Constants {
         static let CellReuseID = "GifCell"
@@ -48,8 +48,8 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
 
     func prepareUI() {
         self.addSearchBar()
-        let collectionViewLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
-        collectionViewLayout?.sectionInset = UIEdgeInsets(top: height, left: 0, bottom: 0, right: 0)
+        let collectionViewLayout = collectionView?.collectionViewLayout as? GifLayout
+        collectionViewLayout?.topInset = searchBar.frame.height
         collectionViewLayout?.invalidateLayout()
     }
 
@@ -61,14 +61,14 @@ class TrendedGifsCollectionViewController: UICollectionViewController, UISearchB
                                                        width: UIScreen.main.bounds.size.width,
                                                        height: 44))
 
-            self.searchBar?.searchBarStyle = .default
-            self.searchBar?.tintColor = .black
-            self.searchBar?.barTintColor = .orange
-            self.searchBar?.placeholder = "Find GIFs"
-            self.searchBar?.delegate = self
+            self.searchBar.searchBarStyle = .default
+            self.searchBar.tintColor = .black
+            self.searchBar.barTintColor = .orange
+            self.searchBar.placeholder = "Find GIFs"
+            self.searchBar.delegate = self
 
         }
-        if !self.searchBar!.isDescendant(of: self.view) {
+        if !self.searchBar.isDescendant(of: self.view) {
             self.view.addSubview(self.searchBar!)
         }
     }
